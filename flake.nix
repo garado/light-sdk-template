@@ -19,7 +19,7 @@
 
         androidComposition = pkgs.androidenv.composeAndroidPackages {
           platformVersions = [ "36" ];
-          buildToolsVersions = [ "36.0.0" ];
+          buildToolsVersions = [ "36.0.0" "35.0.0" ];
           includeEmulator = false;
           includeSystemImages = false;
           includeSources = false;
@@ -38,6 +38,8 @@
           JAVA_HOME = pkgs.jdk17;
           ANDROID_HOME = androidSdkRoot;
           ANDROID_SDK_ROOT = androidSdkRoot;
+
+          GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdkRoot}/build-tools/35.0.0/aapt2";
 
           shellHook = ''
             export PATH="$ANDROID_HOME/platform-tools:$PATH"
