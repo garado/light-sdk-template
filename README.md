@@ -10,6 +10,7 @@ Personal template for developing apps with the Light SDK. (WIP)
 - Automations
     - **CI:** `:tool:assembleDebug`, `:tool:test` on every push/PR to main
     - **Nightly SDK update check:** Dependabot checks the `light-sdk` submodule daily, opening/updating a PR when there's a new commit.
+    - **Releases:** pushing a `v*` tag (e.g. `v0.2.0`) builds a signed release APK and creates a GitHub Release with it attached.
     - **Template propagation (TODO):** Each child repo will keep `light-sdk-template` as a remote; a script running on my home server will merge template changes in and opens a PR per child repo to reduce manual upkeep.
 
 ## Getting started
