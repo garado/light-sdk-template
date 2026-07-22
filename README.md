@@ -1,11 +1,12 @@
 
 # light-sdk-template
 
-Personal template for developing apps with the Light SDK.
+Personal template for developing apps with the Light SDK. (WIP)
 
 - Structure
     - Includes a Nix development shell. It is catered toward headless development and on-device testing.
     - `light-sdk` is a top-level submodule, and custom application code lives in `tool/`.
+    - Sample tool is updated to my preferred defaults and code style.
 - Automations
     - **CI:** `:tool:assembleDebug`, `:tool:test` on every push/PR to main
     - **Nightly SDK update check:** Dependabot checks the `light-sdk` submodule daily, opening/updating a PR when there's a new commit.
