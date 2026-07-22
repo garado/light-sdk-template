@@ -58,4 +58,6 @@ project(":sdk:server").projectDir = file("light-sdk/sdk/server")
 include(":sdk:emulator")
 project(":sdk:emulator").projectDir = file("light-sdk/sdk/emulator")
 
+project(":sdk").projectDir = file("light-sdk/sdk")
+
 include(":tool")
