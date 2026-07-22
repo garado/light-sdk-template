@@ -36,50 +36,58 @@ import com.thelightphone.sdk.ui.LightTopBar
 import com.thelightphone.sdk.ui.LightTopBarCenter
 import com.thelightphone.sdk.ui.lightClickable
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 enum class HomeTab { HELLO, WORLD, SETTINGS }
 
 data class SettingsOption(val label: String, val enabled: Boolean)
 
 class HomeScreenViewModel : LightViewModel<Unit>() {
-    val selectedTab = MutableStateFlow(HomeTab.HELLO)
+    private val _selectedTab = MutableStateFlow(HomeTab.HELLO)
+    val selectedTab: StateFlow<HomeTab> = _selectedTab.asStateFlow()
 
-    val settingsOptions = MutableStateFlow(
+    private val _settingsOptions = MutableStateFlow(
         listOf(
             SettingsOption("Invert Colors", enabled = false),
         )
     )
+    val settingsOptions: StateFlow<List<SettingsOption>> = _settingsOptions.asStateFlow()
 
-    val displayName = MutableStateFlow("")
-    val isEditingName = MutableStateFlow(false)
+    private val _displayName = MutableStateFlow("")
+    val displayName: StateFlow<String> = _displayName.asStateFlow()
+
+    private val _isEditingName = MutableStateFlow(false)
+    val isEditingName: StateFlow<Boolean> = _isEditingName.asStateFlow()
 
     // LightTextInputEditor caches its embedded keyboard's ViewModel by editorKey;
     // bump this each time editing starts so a stale keyboard/TextFieldState pairing
     // from a previous session isnt reused
-    val editSessionId = MutableStateFlow(0)
+    private val _editSessionId = MutableStateFlow(0)
+    val editSessionId: StateFlow<Int> = _editSessionId.asStateFlow()
 
     fun selectTab(tab: HomeTab) {
-        selectedTab.value = tab
+        _selectedTab.value = tab
     }
 
     fun toggleSetting(label: String) {
-        settingsOptions.value = settingsOptions.value.map {
+        _settingsOptions.value = _settingsOptions.value.map {
             if (it.label == label) it.copy(enabled = !it.enabled) else it
         }
     }
 
     fun startEditingName() {
-        editSessionId.value += 1
-        isEditingName.value = true
+        _editSessionId.value += 1
+        _isEditingName.value = true
     }
 
     fun submitName(value: CharSequence) {
-        displayName.value = value.toString()
-        isEditingName.value = false
+        _displayName.value = value.toString()
+        _isEditingName.value = false
     }
 
     fun cancelEditingName() {
-        isEditingName.value = false
+        _isEditingName.value = false
     }
 }
 
