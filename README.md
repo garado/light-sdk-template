@@ -1,7 +1,7 @@
 
 # light-sdk-template
 
-Personal template for developing apps with the Light SDK. (WIP)
+Personal template and reference for developing apps with the Light SDK. (WIP)
 
 - Structure
     - Includes a Nix development shell. It is catered toward headless development and on-device testing.
@@ -18,6 +18,62 @@ Requires Github PAT `read:packages` scope for resolving the private Github Packa
 - Local: put it in `local.properties` as `gpr.user`/`gpr.key` (gitignored).
 - CI: add it as repo secrets: `GH_PACKAGES_USER`, `GH_PACKAGES_TOKEN` under Settings -> Secrets.
 
+### Retrofitting existing app
+```sh
+git checkout -b refactor/light-sdk-rewrite
+
+# Wipe everything!
+# rm -rf *
+```
+
+```sh
+export LIGHT_SDK_TEMPLATE_PATH=~/Github/light/light-sdk-template
+
+# 1. Submodule
+git submodule add https://github.com/lightphone/light-sdk.git light-sdk
+
+# 2. Gradle wiring + devshell + gitignore
+cp $LIGHT_SDK_TEMPLATE_PATH/settings.gradle.kts .
+cp $LIGHT_SDK_TEMPLATE_PATH/build.gradle.kts .
+cp $LIGHT_SDK_TEMPLATE_PATH/gradle.properties .
+cp -r $LIGHT_SDK_TEMPLATE_PATH/gradle .
+cp $LIGHT_SDK_TEMPLATE_PATH/gradlew .
+cp $LIGHT_SDK_TEMPLATE_PATH/gradlew.bat .
+chmod +x gradlew
+cp $LIGHT_SDK_TEMPLATE_PATH/flake.nix .
+cp $LIGHT_SDK_TEMPLATE_PATH/.gitignore .
+
+# 3. Demo tool scaffold as a starting point
+cp -r $LIGHT_SDK_TEMPLATE_PATH/tool .
+
+# 4. CI + Dependabot + release automation
+mkdir -p .github/workflows
+cp $LIGHT_SDK_TEMPLATE_PATH/.github/workflows/*.yml .github/workflows/
+cp $LIGHT_SDK_TEMPLATE_PATH/.github/dependabot.yml .github/
+
+# 5. Helper script + license
+mkdir -p scripts
+cp $LIGHT_SDK_TEMPLATE_PATH/scripts/new-project.sh scripts/
+chmod +x scripts/new-project.sh
+cp $LIGHT_SDK_TEMPLATE_PATH/LICENSE .
+```
+
+### Pulling in light-sdk-template updates
+```sh
+# One-time setup
+git remote add template git@github.com:garado/light-sdk-template.git
+
+# Pull in template improvements
+git fetch template
+git merge template/main --allow-unrelated-histories
+
+# This will conflict on files meant to stay project-specific
+git checkout --ours README.md tool/lighttool.toml
+git add README.md tool/lighttool.toml
+git commit
+```
+
+### Setup
 ```sh
 # Enter Nix development shell
 nix develop
