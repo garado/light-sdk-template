@@ -43,4 +43,4 @@ jobs:
         env:
           GH_PACKAGES_USER: ${{ secrets.GH_PACKAGES_USER }}
           GH_PACKAGES_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
-        run: nix develop --command ./gradlew :tool:assembleDebug
+        run: nix develop --command ./gradlew :tool:assembleDebug :tool:test
