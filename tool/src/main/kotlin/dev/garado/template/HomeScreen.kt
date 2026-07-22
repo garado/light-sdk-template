@@ -1,4 +1,4 @@
-package com.thelightphone.sample
+package dev.garado.template
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

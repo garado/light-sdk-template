@@ -1,5 +1,5 @@
 [tool]
-id = "com.thelightphone.app"
+id = "dev.garado.template"
 label = "Light SDK Tool"
 versionCode = 1
 versionName = "1.0"
