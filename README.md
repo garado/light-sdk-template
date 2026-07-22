@@ -3,9 +3,8 @@
 
 Personal template for developing apps with the Light SDK.
 
-## Information
 - Structure
-    - Includes a Nix development shell. It is catered toward CLI/headless development and testing on-device.
+    - Includes a Nix development shell. It is catered toward headless development and on-device testing.
     - `light-sdk` is a top-level submodule, and custom application code lives in `tool/`.
 - Automations
     - **CI:** `:tool:assembleDebug`, `:tool:test` on every push/PR to main
