@@ -59,6 +59,7 @@ cp $LIGHT_SDK_TEMPLATE_PATH/LICENSE .
 ```
 
 ### Pulling in light-sdk-template updates
+For updating the flake, custom scripts, or custom gradle wiring (not light-sdk).
 ```sh
 # One-time setup
 git remote add template git@github.com:garado/light-sdk-template.git
@@ -68,9 +69,7 @@ git fetch template
 git merge template/main --allow-unrelated-histories
 
 # This will conflict on files meant to stay project-specific
-git checkout --ours README.md tool/lighttool.toml
-git add README.md tool/lighttool.toml
-git commit
+# TODO Add script to autoresolve
 ```
 
 ### Setup
@@ -85,7 +84,8 @@ nix develop
 ./gradlew :tool:installDebug
 ```
 
-## SDK summary (for personal reference)
+## SDK summary
+For personal reference
 - Components
     - **Layout/Nav:** `LightTopBar`, `LightBottomBar` (up to 5 icons, or 3 if mixing in text), `LightFullscreenModal`, `LightScrollView`, `LightGrid` (spacing constants)
     - **Text:** `LightText` (variants: Title, Subtitle, Heading, Subheading, Copy, Button, Paragraph, ParagraphWide, Detail, Fine, Superfine, Micro), `LightFont`
