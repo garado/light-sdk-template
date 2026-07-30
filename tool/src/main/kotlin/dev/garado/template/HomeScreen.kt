@@ -114,7 +114,15 @@ class HomeScreen(sealedActivity: SealedLightActivity) : LightScreen<Unit, HomeSc
             if (isEditingName) {
                 val nameFieldState = rememberTextFieldState(displayName)
                 val keyboardOptionsFlow = remember {
-                    MutableStateFlow(KeyboardOptions(emptyList(), true, false, true))
+                    MutableStateFlow(
+                        KeyboardOptions(
+                            emptyList(),
+                            true,
+                            false,
+                            true,
+                            swipeEnabled = false,
+                        )
+                    )
                 }
 
                 LightTextInputEditor(
