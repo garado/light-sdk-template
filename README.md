@@ -15,8 +15,8 @@ Personal template and reference for developing apps with the Light SDK. (WIP)
 
 ## Getting started
 Requires Github PAT `read:packages` scope for resolving the private Github Packages dependency.
-- Local: put it in `local.properties` as `gpr.user`/`gpr.key` (gitignored).
-- CI: add it as repo secrets: `GH_PACKAGES_USER`, `GH_PACKAGES_TOKEN` under Settings -> Secrets.
+- Local - put it in `local.properties` as `gpr.user`/`gpr.key` (gitignored).
+- CI - add it as repo secrets for Actions and Dependabot: `GH_PACKAGES_USER`, `GH_PACKAGES_TOKEN` under Settings -> Secrets.
 
 ### Retrofitting existing app
 ```sh
