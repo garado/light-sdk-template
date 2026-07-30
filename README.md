@@ -14,9 +14,11 @@ Personal template and reference for developing apps with the Light SDK. (WIP)
     - **Template propagation (TODO):** Each child repo will keep `light-sdk-template` as a remote; GH action will check it nightly.
 
 ## Getting started
-Requires Github PAT `read:packages` scope for resolving the private Github Packages dependency.
-- Local - put it in `local.properties` as `gpr.user`/`gpr.key` (gitignored).
-- CI - add it as repo secrets for Actions and Dependabot: `GH_PACKAGES_USER`, `GH_PACKAGES_TOKEN` under Settings -> Secrets.
+
+Add a Github personal access token (PAT) with `read:packages` scope for resolving the private Github Packages dependency.
+
+- Local development: Put it in `local.properties` as `gpr.user`/`gpr.key` (gitignored).
+- CI: Add it as repo secrets for Actions and Dependabot: `GH_PACKAGES_USER`, `GH_PACKAGES_TOKEN` under Settings -> Secrets.
 
 ### Retrofitting existing app
 ```sh
@@ -87,11 +89,34 @@ nix develop
 ## SDK summary
 For personal reference
 - Components
-    - **Layout/Nav:** `LightTopBar`, `LightBottomBar` (up to 5 icons, or 3 if mixing in text), `LightFullscreenModal`, `LightScrollView`, `LightGrid` (spacing constants)
-    - **Text:** `LightText` (variants: Title, Subtitle, Heading, Subheading, Copy, Button, Paragraph, ParagraphWide, Detail, Fine, Superfine, Micro), `LightFont`
-    - **Input:** `LightTextField` (read-only, opens editor on tap), `LightTextInputEditor`, `LightEmbeddedLp3Keyboard`
-    - **Icons/media:** `LightIcon` / `LightIcons` (full icon set), `LightQrCodeScanner`
-    - **Interaction/theming:** `lightClickable` (no press ripple), `LightTheme` / `LightThemeColors` / `LightThemeController` / `LightThemeTokens`
+    - **Layout/Nav:**
+        - `LightTopBar`
+        - `LightBottomBar` (up to 5 icons, or 3 if mixing in text)
+        - `LightFullscreenModal`
+        - `LightScrollView`
+        - `LightGrid` (spacing constants)
+        - `LightModalManager`: transient overlays, timeout/dismiss
+    - **Text:**
+        - `LightText` (variants: Title, Subtitle, Heading, Subheading, Copy, Button, Paragraph, ParagraphWide, Detail, Fine, Superfine, Micro)
+        - `LightFont`
+    - **Input:**
+        - `LightTextField` (read-only, opens editor on tap)
+        - `LightTextInputEditor`
+        - `LightEmbeddedLp3Keyboard`
+        - `LightKeyHandler`: hardware key event forwarding (down/up/multiple)
+    - **Icons/media:**
+        - `LightIcon` / `LightIcons` (full icon set)
+        - `LightQrCodeScanner`
+        - `LightProgressBar`
+    - **Audio:**
+        - `LightAudio` (factory off `SealedLightActivity`): handles foreground audio focus internally
+        - `LightAudioPlayer`
+        - `LightAudioRecorder`
+        - `LightAudioCapture`
+        - `LightAudioVoice`
+    - **Interaction/theming:**
+        - `lightClickable` (no press ripple)
+        - `LightTheme` / `LightThemeColors` / `LightThemeController` / `LightThemeTokens`
 - Permissions
     - `INTERNET`
     - `ACCESS_NETWORK_STATE`
