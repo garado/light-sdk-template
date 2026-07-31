@@ -4,10 +4,10 @@
 Personal template for developing apps with the Light SDK.
 
 - Structure
-    - Includes a Nix development shell. It is catered toward headless development and on-device testing.
     - `light-sdk` is a top-level submodule, and custom application code lives in `tool/`. This template provides custom Gradle wiring to get this architecture to work correctly.
-       This is to get around the one-fork-per-account problem while also cleanly ensuring tools can easily pull SDK updates.
-    - Sample tool is updated to my preferred defaults and code style.
+        - This is to get around the one-fork-per-account problem while also cleanly ensuring tools can easily pull SDK updates.
+    - Includes a sample tool with my preferred defaults and code style.
+    - Includes a Nix development shell. It is catered toward headless development and on-device testing.
 - Automations
     - **CI:** `:tool:assembleDebug`, `:tool:test` on every push/PR to main
     - **Nightly SDK update check:** Dependabot checks the `light-sdk` submodule daily, opening/updating a PR when there's a new commit.
