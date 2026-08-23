@@ -6,6 +6,7 @@ Personal template for developing apps with the Light SDK.
 - Structure
     - `light-sdk` is a top-level submodule, and custom application code lives in `tool/`. This template provides custom Gradle wiring to get this architecture to work correctly.
         - This is to get around the one-fork-per-account problem while also cleanly ensuring tools can easily pull SDK updates.
+    - **Patches:** includes an `sdk-patch` dir for traceability to any edits to the upstream SDK. These are automatically applied at build time.
     - Includes a sample tool with my preferred defaults and code style.
     - Includes a Nix development shell. It is catered toward headless development and on-device testing.
 - Automations
