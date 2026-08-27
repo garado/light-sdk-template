@@ -20,10 +20,9 @@ An opinionated template for developing apps with the Light SDK.
 ### Starting fresh
 
 ```sh
-# clone
-git clone --recurse-submodules git@github.com:garado/light-sdk-template.git
+# press the 'Use this template' button on the repo's Github page and create a new repo from there
 
-# if you cloned, but forgot --recurse-submodules:
+# clone that repo locally, cd into it, and then:
 git submodule update --init --recursive
 
 # run interactive project setup script (auto-renames stuff)
