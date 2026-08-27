@@ -17,12 +17,26 @@ Personal template for developing apps with the Light SDK.
 
 ## Getting started
 
-Add a Github personal access token (PAT) with `read:packages` scope for resolving the private Github Packages dependency.
+### Starting fresh
 
-- Local development: Put it in `local.properties` as `gpr.user`/`gpr.key` (gitignored).
-- CI: Add it as repo secrets for Actions and Dependabot: `GH_PACKAGES_USER`, `GH_PACKAGES_TOKEN` under Settings -> Secrets.
+```sh
+# clone
+git clone --recurse-submodules git@github.com:garado/light-sdk-template.git
+
+# if you cloned, but forgot --recurse-submodules:
+git submodule update --init --recursive
+
+# run interactive project setup script (auto-renames stuff)
+./scripts/new-project.sh
+
+# build
+./gradlew :tool:installDebug
+```
 
 ### Retrofitting existing app
+
+I have a lot of old apps written with Vandam's [light-template](https://github.com/vandamd/light-template). This is my process for retrofitting those repos to use this structure.
+
 ```sh
 git checkout -b refactor/light-sdk-rewrite
 
@@ -63,7 +77,8 @@ cp $LIGHT_SDK_TEMPLATE_PATH/LICENSE .
 ```
 
 ### Pulling in light-sdk-template updates
-For updating the flake, custom scripts, or custom gradle wiring (not light-sdk).
+There is no automatic way to pull changes from the template into your repo after you've already made the repo. This is my process for it.
+
 ```sh
 # One-time setup
 git remote add template git@github.com:garado/light-sdk-template.git
@@ -74,18 +89,6 @@ git merge template/main --allow-unrelated-histories
 
 # This will conflict on files meant to stay project-specific
 # TODO Add script to autoresolve
-```
-
-### Setup
-```sh
-# Enter Nix development shell
-nix develop
-
-# Run interactive project setup script (auto-renames stuff)
-./scripts/new-project.sh
-
-# Build
-./gradlew :tool:installDebug
 ```
 
 ## SDK summary
