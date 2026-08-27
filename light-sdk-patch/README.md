@@ -1,7 +1,7 @@
 
 # light-sdk-patch
 
-Apply patches to the `light-sdk` submodule at build time.
+Patchfiles in this directory are applied to `light-sdk` at build time, ensuring traceability for any SDK edits.
 
 ## Creating/updating a patch
 
@@ -18,4 +18,4 @@ git -C light-sdk checkout -- <relative/path/to/file>
 
 ## Patches
 
-None yet!
+None yet! (This is where you'd describe what each patch is and why it's made.)
