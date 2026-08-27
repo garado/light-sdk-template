@@ -1,7 +1,7 @@
 
 # light-sdk-template
 
-Personal template for developing apps with the Light SDK.
+An opinionated template for developing apps with the Light SDK.
 
 - Structure
     - `light-sdk` is a top-level submodule, and custom application code lives in `tool/`. This template provides custom Gradle wiring to get this architecture to work correctly.
