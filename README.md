@@ -19,10 +19,10 @@ An opinionated template for developing apps with the Light SDK.
 
 ### Starting fresh
 
-```sh
-# press the 'Use this template' button on the repo's Github page and create a new repo from there
+First press 'Use this template' -> 'Create a new repository'.
 
-# clone that repo locally, cd into it, and then:
+```sh
+# Clone your new repo locally, cd into it, and then:
 git submodule update --init --recursive
 
 # run interactive project setup script (auto-renames stuff)
