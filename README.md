@@ -37,6 +37,8 @@ git submodule update --init --recursive
 
 I have a lot of old apps written with Vandam's [light-template](https://github.com/vandamd/light-template). This is my process for retrofitting those repos to use this structure.
 
+First make a new branch for the rewrite:
+
 ```sh
 git checkout -b refactor/light-sdk-rewrite
 
@@ -44,13 +46,19 @@ git checkout -b refactor/light-sdk-rewrite
 # rm -rf *
 ```
 
-```sh
-export LIGHT_SDK_TEMPLATE_PATH=~/Github/light/light-sdk-template
+Clone `light-sdk-template` somewhere, then set this env var accordingly:
 
-# 1. Submodule
+```sh
+export LIGHT_SDK_TEMPLATE_PATH=~/path/to/your/light-sdk-template
+```
+
+Then `cd` to the repo to be retrofitted, and copy+paste this block of commands:
+
+```sh
+# 1. Track light-sdk
 git submodule add https://github.com/lightphone/light-sdk.git light-sdk
 
-# 2. Gradle wiring + devshell + gitignore
+# 2. Copy gradle wiring + devshell + patches + gitignore
 cp $LIGHT_SDK_TEMPLATE_PATH/settings.gradle.kts .
 cp $LIGHT_SDK_TEMPLATE_PATH/build.gradle.kts .
 cp $LIGHT_SDK_TEMPLATE_PATH/gradle.properties .
@@ -58,18 +66,19 @@ cp -r $LIGHT_SDK_TEMPLATE_PATH/gradle .
 cp $LIGHT_SDK_TEMPLATE_PATH/gradlew .
 cp $LIGHT_SDK_TEMPLATE_PATH/gradlew.bat .
 chmod +x gradlew
+cp -r $LIGHT_SDK_TEMPLATE_PATH/light-sdk-patch .
 cp $LIGHT_SDK_TEMPLATE_PATH/flake.nix .
 cp $LIGHT_SDK_TEMPLATE_PATH/.gitignore .
 
-# 3. Demo tool scaffold as a starting point
+# 3. Copy demo tool as a starting point
 cp -r $LIGHT_SDK_TEMPLATE_PATH/tool .
 
-# 4. CI + Dependabot + release automation
+# 4. Copy CI + Dependabot + release automation
 mkdir -p .github/workflows
 cp $LIGHT_SDK_TEMPLATE_PATH/.github/workflows/*.yml .github/workflows/
 cp $LIGHT_SDK_TEMPLATE_PATH/.github/dependabot.yml .github/
 
-# 5. Helper script + license
+# 5. Copy helper script + license
 mkdir -p scripts
 cp $LIGHT_SDK_TEMPLATE_PATH/scripts/new-project.sh scripts/
 chmod +x scripts/new-project.sh
