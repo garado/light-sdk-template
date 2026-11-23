@@ -2,12 +2,18 @@
   description = "Development environment for building tools against the Light SDK";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -19,7 +25,10 @@
 
         androidComposition = pkgs.androidenv.composeAndroidPackages {
           platformVersions = [ "36" ];
-          buildToolsVersions = [ "36.0.0" "35.0.0" ];
+          buildToolsVersions = [
+            "36.0.0"
+            "35.0.0"
+          ];
           includeEmulator = false;
           includeSystemImages = false;
           includeSources = false;
@@ -45,5 +54,6 @@
             export PATH="$ANDROID_HOME/platform-tools:$PATH"
           '';
         };
-      });
+      }
+    );
 }
